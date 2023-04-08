@@ -1,7 +1,5 @@
 ## NestJs Item Management
 ## Setup
-## Enviroiment
-
 ```bash
  $ git clone https://github.com/Cuongvm93/item_management.git
  $ cd item_management
