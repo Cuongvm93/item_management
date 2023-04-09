@@ -39,6 +39,12 @@ export class categoryService{
     async updateOne(id:number,updateCate:updateCateDto){
         console.log(id,updateCate)
         try{
+           let find=await this.categoryRespository.findOneBy({id})
+           console.log(find);
+           
+           if (!find) {
+            throw new HttpException('category is not exist',HttpStatus.NOT_FOUND)
+           }
            await this.categoryRespository.update(id,updateCate)
            return('Update success!')
            

@@ -22,6 +22,7 @@ import {
   
     @Patch(':id')
     updateItem(@Param('id') id: number, @Body() updateItem: updateItemdDto) {
+      console.log(123123)
       return this.itemService.updateProd(id, updateItem);
     }
 

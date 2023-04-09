@@ -19,16 +19,16 @@ export class itemService {
   async createOne(createItem: createItemDto) {
     const { name, price, category } = createItem;
     try {
-      const arr = await Promise.all(
-        category.map((e) => this.categoryResository.findOneBy({ name: e })),
-      );
-      //   console.log(arr);
+      const arr = await this.categoryResository.findByIds(category);
+      console.log(arr);
+      if (arr.length == 0) {
+        return 'categories not exits';
+      }
       const newProd = new Item();
       newProd.name = name;
       newProd.price = price;
-      newProd.caterogies = arr;
+      newProd.categories = arr;
       newProd.createAt = new Date();
-      // const prod= await this.itemRepository.create({...newProd})
       return await this.itemRepository.save(newProd);
     } catch (err) {
       return err.message;
@@ -38,10 +38,14 @@ export class itemService {
   // Update item
   async updateProd(id: number, updateItem: updateItemdDto) {
     try {
-      let result = await this.itemRepository.update(
-        { id },
-        { ...updateItem, updateAt: new Date() },
-      );
+      let find = await this.itemRepository.findOneBy({ id });
+      if (!find) {
+        throw new HttpException('Not found item', HttpStatus.NOT_FOUND);
+      }
+      await this.itemRepository.update(id, {
+        ...updateItem,
+        updateAt: new Date(),
+      });
       return 'Update item success!';
     } catch (err) {
       return err;
@@ -62,9 +66,9 @@ export class itemService {
   async getAll(id: number) {
     try {
       const result = await this.itemRepository.find({
-        relations: { caterogies: true },
+        relations: { categories: true },
         where: {
-          caterogies: { id: id },
+          categories: { id: id },
         },
       });
       return result;

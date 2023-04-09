@@ -22,5 +22,5 @@ import { Category } from './category.entity';
             {onDelete:'CASCADE',onUpdate:'CASCADE'}
         )
         @JoinTable()
-        caterogies:Category[]
+        categories:Category[]
     }

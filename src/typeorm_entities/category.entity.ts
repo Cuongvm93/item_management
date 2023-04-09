@@ -1,3 +1,4 @@
+import { type } from "os";
 import {Entity,Column,PrimaryGeneratedColumn} from "typeorm"
 @Entity({name:'category_tbl'})
 export class Category{
@@ -7,6 +8,6 @@ export class Category{
     @Column({unique:true})
     name:string
 
-    @Column()
+    @Column({type:"longtext"})
     description:string
 }
