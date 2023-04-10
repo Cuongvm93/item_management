@@ -121,14 +121,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/product/6",
+							"raw": "http://localhost:5000/item/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
-								"product",
+								"item",
 								"6"
 							]
 						}
