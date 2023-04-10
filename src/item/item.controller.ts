@@ -2,7 +2,7 @@ import {
     Body,
     Controller,
     Post,
-    Patch,
+    Put,
     Param,
     Delete,
     Get,
@@ -20,7 +20,7 @@ import {
       return this.itemService.createOne(createItem);
     }
   
-    @Patch(':id')
+    @Put(':id')
     updateItem(@Param('id') id: number, @Body() updateItem: updateItemdDto) {
       console.log(123123)
       return this.itemService.updateProd(id, updateItem);

@@ -37,16 +37,14 @@ export class itemService {
 
   // Update item
   async updateProd(id: number, updateItem: updateItemdDto) {
+    const {categories,...other}=updateItem
     try {
-      let find = await this.itemRepository.findOneBy({ id });
-      if (!find) {
-        throw new HttpException('Not found item', HttpStatus.NOT_FOUND);
-      }
-      await this.itemRepository.update(id, {
-        ...updateItem,
-        updateAt: new Date(),
-      });
-      return 'Update item success!';
+      let find= await this.itemRepository.findOneBy({id})
+      const arr = await this.categoryResository.findByIds(categories)
+      const newItem={...other,categories:arr,id,createAt:find.createAt,updateAt:new Date()}
+      console.log(newItem);
+      await this.itemRepository.delete({id})
+      return await this.itemRepository.save(newItem)
     } catch (err) {
       return err;
     }

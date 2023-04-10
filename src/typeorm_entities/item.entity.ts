@@ -11,7 +11,7 @@ import { Category } from './category.entity';
         @Column()
         price:number
 
-        @Column()
+        @Column({default:null})
         createAt:Date
 
         @Column({default:null})

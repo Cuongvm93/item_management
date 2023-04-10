@@ -138,22 +138,11 @@
 				{
 					"name": "Update item",
 					"request": {
-						"method": "PATCH",
+						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "adidas Polo",
-									"type": "default"
-								},
-								{
-									"key": "price",
-									"value": "70",
-									"type": "default"
-								}
-							],
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"item_10_new\",\r\n    \"price\":5000,\r\n    \"categories\":[\r\n        4,6\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -161,7 +150,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/item/5",
+							"raw": "http://localhost:5000/item/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -169,7 +158,7 @@
 							"port": "5000",
 							"path": [
 								"item",
-								"5"
+								"10"
 							]
 						}
 					},
